@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>org.jeef.airports</string>
+	<string>org.jeef.airlines</string>
 	<key>category</key>
-	<string>Tools</string>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>B678B89E-8BDD-44D3-ADF6-AE2FF3123C60</key>
+		<key>A946A8AB-E819-414F-AD9F-290426963DA0</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0AB166B0-4A70-4F0C-9DC4-E7CC89AE59B4</string>
+				<string>22D176FC-DD98-40D1-8391-380719C911E6</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -22,10 +22,12 @@
 			</dict>
 		</array>
 		<key>BF7A2B5A-C1F0-4D67-8F52-E0F602DB7EF9</key>
+		<array/>
+		<key>EEE5250C-F746-44B7-87F7-B67E60670479</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>B678B89E-8BDD-44D3-ADF6-AE2FF3123C60</string>
+				<string>A946A8AB-E819-414F-AD9F-290426963DA0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -38,11 +40,11 @@
 	<key>createdby</key>
 	<string>Jeff Stein</string>
 	<key>description</key>
-	<string>ICAO / IATA search</string>
+	<string>ICAO / IATA search for airlines</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Airport Search</string>
+	<string>Airline Search</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -60,7 +62,7 @@
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>0AB166B0-4A70-4F0C-9DC4-E7CC89AE59B4</string>
+			<string>22D176FC-DD98-40D1-8391-380719C911E6</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -82,7 +84,7 @@
 				<key>queuedelaymode</key>
 				<integer>1</integer>
 				<key>queuemode</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
@@ -105,7 +107,7 @@ python src/airportDetails.py $query</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>B678B89E-8BDD-44D3-ADF6-AE2FF3123C60</string>
+			<string>A946A8AB-E819-414F-AD9F-290426963DA0</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -123,11 +125,11 @@ python src/airportDetails.py $query</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<false/>
+				<true/>
 				<key>queuedelaymode</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>queuemode</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Searching</string>
 				<key>script</key>
@@ -140,6 +142,49 @@ python src/airportDetails.py $query</string>
 				<string>Search the airport database.  Matches ordered by code,name,other</string>
 				<key>title</key>
 				<string>Search Airports</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>EEE5250C-F746-44B7-87F7-B67E60670479</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>aln</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching</string>
+				<key>script</key>
+				<string>python ./src/searchAirlines.py "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Search the airline database. Matches ordered by code,name,other</string>
+				<key>title</key>
+				<string>Search Airlines</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -206,45 +251,54 @@ You can search the database with the "apt" command
 You can load specific airport details with "aptd" which takes an ICAO airport identifier as a paramater</string>
 	<key>uidata</key>
 	<dict>
-		<key>0AB166B0-4A70-4F0C-9DC4-E7CC89AE59B4</key>
+		<key>22D176FC-DD98-40D1-8391-380719C911E6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>410</integer>
 			<key>ypos</key>
-			<integer>20</integer>
+			<integer>30</integer>
 		</dict>
 		<key>96414E0C-31DE-4450-AF9A-2978AF5C679E</key>
 		<dict>
 			<key>note</key>
 			<string>Downloads latest data set from ourairports.com</string>
 			<key>xpos</key>
-			<integer>50</integer>
+			<integer>60</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>360</integer>
 		</dict>
-		<key>B678B89E-8BDD-44D3-ADF6-AE2FF3123C60</key>
+		<key>A946A8AB-E819-414F-AD9F-290426963DA0</key>
 		<dict>
 			<key>note</key>
 			<string>Airport Description
 
 Loads details for specified ICAO airport ID</string>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>20</integer>
+			<integer>30</integer>
 		</dict>
 		<key>BF7A2B5A-C1F0-4D67-8F52-E0F602DB7EF9</key>
 		<dict>
 			<key>note</key>
 			<string>Searches entire database for a match</string>
 			<key>xpos</key>
-			<integer>50</integer>
+			<integer>60</integer>
 			<key>ypos</key>
-			<integer>20</integer>
+			<integer>190</integer>
+		</dict>
+		<key>EEE5250C-F746-44B7-87F7-B67E60670479</key>
+		<dict>
+			<key>note</key>
+			<string>Searches entire database for a match</string>
+			<key>xpos</key>
+			<integer>60</integer>
+			<key>ypos</key>
+			<integer>30</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>0.6.31</string>
+	<string>0.5</string>
 	<key>webaddress</key>
 	<string>https://github.com/jeeftor/alfredAirports</string>
 </dict>

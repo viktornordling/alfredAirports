@@ -9,6 +9,7 @@ RUNWAY_URL  = 'http://ourairports.com/data/runways.csv'
 AIRPORT_URL = 'http://ourairports.com/data/airports.csv'
 FRQ_URL     = 'http://ourairports.com/data/airport-frequencies.csv'
 NAVAID_URL  = 'http://ourairports.com/data/navaids.csv'
+AIRLINE_URL = 'https://raw.githubusercontent.com/jpatokal/openflights/master/data/airlines.dat'
 
 
 def main(wf):
@@ -16,9 +17,12 @@ def main(wf):
     file_count = 0
     wf.store_data('download_progress', "%d/4" % file_count)
 
-    for url in [AIRPORT_URL, RUNWAY_URL, FRQ_URL, NAVAID_URL]:
+    for url in [AIRPORT_URL, RUNWAY_URL, FRQ_URL, NAVAID_URL, AIRLINE_URL]:
         file_count += 1
         file_name = url.split('/')[-1]
+        if not file_name.endswith('.csv'):
+          file_name = file_name.split('.')[0] + '.csv'
+
         wf.store_data('download_progress', "%d/4" % file_count)
         wf.store_data('download_file', file_name)
         download_file(url, file_name)
